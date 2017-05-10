@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Lawyered</string>
+    <string name="eng_contact_me">Contact</string>
+    <string name="eng_rate">Rate</string>
 </resources>
