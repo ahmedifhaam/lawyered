@@ -10,9 +10,9 @@ import android.view.MenuItem;
 
 
 import com.mit.lawyered.R;
-import com.mit.lawyered.view.fragments.FragmentOne;
-import com.mit.lawyered.view.fragments.FragmentThree;
-import com.mit.lawyered.view.fragments.FragmentTwo;
+import com.mit.lawyered.view.fragments.LawsFragment;
+import com.mit.lawyered.view.fragments.ProfilesFragment;
+import com.mit.lawyered.view.fragments.NotificationsFragment;
 
 /**
  * Created by Ahmed on 5/8/2017.
@@ -27,19 +27,27 @@ public class Home extends AppCompatActivity{
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.navigation);
 
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_layout, LawsFragment.newInstance());
+        transaction.commit();
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 Fragment selectedFragment = null;
                 switch (item.getItemId()) {
                     case R.id.laws_bt_ic:
-                        selectedFragment = FragmentOne.newInstance();
+                        selectedFragment = LawsFragment.newInstance();
                         break;
                     case R.id.noti_bt_ic:
-                        selectedFragment = FragmentTwo.newInstance();
+                        selectedFragment = NotificationsFragment.newInstance();
                         break;
                     case R.id.findlawyer_bt_ic:
-                        selectedFragment = FragmentThree.newInstance();
+                        selectedFragment = ProfilesFragment.newInstance();
+                        break;
+
+                    default:
+                        selectedFragment = ProfilesFragment.newInstance();
                         break;
                 }
                 FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

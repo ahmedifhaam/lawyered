@@ -15,6 +15,12 @@ public class User {
 
     }
 
+    public User(String id,String name){
+        this.id=id;
+        this.name = name;
+
+    }
+
     public User(String id, String name, String username, String password, String balance) {
         this.id = id;
         this.name = name;

@@ -6,7 +6,7 @@ package com.mit.lawyered.models;
 
 public class ThirdParties extends User{
     private String tpid;
-    private String userid;
+
     private String contactDetails;
     private String description;
     private String type;
@@ -17,9 +17,9 @@ public class ThirdParties extends User{
     public ThirdParties() {
     }
 
-    public ThirdParties(String tpid, String userid, String contactDetails, String description, String type, String reviewAvg, String individualOrOrg) {
+    public ThirdParties(String tpid, String id, String name,String contactDetails, String description, String type, String reviewAvg, String individualOrOrg) {
+        super(id,name);
         this.tpid = tpid;
-        this.userid = userid;
         this.contactDetails = contactDetails;
         this.description = description;
         this.type = type;
@@ -35,13 +35,7 @@ public class ThirdParties extends User{
         this.tpid = tpid;
     }
 
-    public String getUserid() {
-        return userid;
-    }
 
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
 
     public String getContactDetails() {
         return contactDetails;

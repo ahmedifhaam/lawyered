@@ -7,5 +7,10 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+    
+    <style name="single_Content">
+        <item name="android:paddingBottom">15dp</item>
+        
+    </style>
 
 </resources>

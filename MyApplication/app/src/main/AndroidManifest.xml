@@ -8,13 +8,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
     <activity android:name=".view.activities.Home">
-
-    </activity>
-    <activity android:name=".view.activities.LawyerDetails">
         <intent-filter>
             <action android:name="android.intent.action.MAIN"/>
             <category android:name="android.intent.category.LAUNCHER"/>
         </intent-filter>
+    </activity>
+    <activity android:name=".view.activities.LawyerDetails">
+
+    </activity>
+    <activity android:name=".view.activities.LawDetails">
+
+    </activity>
+    <activity android:name=".view.activities.LocationSpecificRules">
+
+    </activity>
+    <activity android:name=".view.activities.SignIn">
+
+    </activity>
+    <activity android:name=".view.activities.SignUp">
+
     </activity>
     </application>
 

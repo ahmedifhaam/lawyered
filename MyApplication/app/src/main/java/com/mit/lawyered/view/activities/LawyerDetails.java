@@ -43,12 +43,16 @@ public class LawyerDetails extends AppCompatActivity {
                 tagGroup.remove(position);
             }
         });*/
-        thirdParties = new ThirdParties("tpid","userid","0776699609","Iam a good lawyer","NPO","4.0/5","Individual");
+        thirdParties = new ThirdParties("tpid","userid","Ahmed Ifhaam","0776699609","Iam a good lawyer","NPO","4.0/5","Individual");
         thirdParties.setTags(new String[]{"Test1","Test2","test 3"});
-
+        init();
     }
 
     private void init(){
+        lawyerName.setText(thirdParties.getName());
+        lawyerRating.setText(thirdParties.getReviewAvg());
+        shortDesc.setText(thirdParties.getDescription());
+
         for(String tagText:thirdParties.getTags()){
             Tag tag = new Tag(tagText);
             tag.tagTextSize=25.0f;
