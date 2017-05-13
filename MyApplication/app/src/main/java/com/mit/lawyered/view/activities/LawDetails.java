@@ -7,6 +7,9 @@ import android.widget.TextView;
 import com.mit.lawyered.R;
 import com.mit.lawyered.models.Law;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by Ahmed on 5/10/2017.
  */
@@ -26,7 +29,11 @@ public class LawDetails extends AppCompatActivity {
         lawShortDesc = (TextView) findViewById(R.id.short_desc);
         lawFullDesc = (TextView) findViewById(R.id.full_desc);
 
-        law = new Law("id","Law Title one ","this is the short description of the law and its very sihort","null");
+        List<String> tagList=new ArrayList<>();
+        tagList.add("Criminal");
+        tagList.add("Murder");
+
+        law = new Law("id","Law Title one ","this is the short description of the law and its very sihort","null",tagList);
         init();
     }
 
