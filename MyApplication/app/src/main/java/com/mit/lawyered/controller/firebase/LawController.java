@@ -23,6 +23,9 @@ public  class LawController {
     public static final String EXTRA_POST_KEY = "post_key";
     public DatabaseReference mDatabaseLaw;
     public OnResponse response;
+
+    boolean isLawsaved;
+
     public LawController(OnResponse responder){
         mDatabaseLaw= FirebaseDatabase.getInstance().getReference().child("laws");
     }
@@ -56,6 +59,21 @@ public  class LawController {
 
 
 
+    }
+
+    public boolean saveLaw(String title,String smallDesc,String fullDesc,List<String>tags){
+        Law law=new Law();
+        String key=mDatabaseLaw.push().getKey();
+        law.setLawId(key);
+        law.setTitle(title);
+        law.setShortDesc(smallDesc);
+        law.setFullDesc(fullDesc);
+        law.setTags(tags);
+
+        mDatabaseLaw.child(key).setValue(law);
+
+
+        return true;
     }
 
 }

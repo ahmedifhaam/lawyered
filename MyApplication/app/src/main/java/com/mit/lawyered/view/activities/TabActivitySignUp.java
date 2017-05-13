@@ -105,5 +105,5 @@ public class TabActivitySignUp extends AppCompatActivity {
             return tab;
         }
     }
-    
+
 }
