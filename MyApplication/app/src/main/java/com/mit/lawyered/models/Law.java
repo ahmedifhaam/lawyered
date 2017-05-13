@@ -1,5 +1,7 @@
 package com.mit.lawyered.models;
 
+import java.util.List;
+
 /**
  * Created by Ahmed on 5/10/2017.
  */
@@ -9,12 +11,13 @@ public class Law {
     private String title;
     private String shortDesc;
     private String fullDesc;
+    private List<String>tags;
 
     public Law(){
 
     }
 
-    public Law(String lawId, String title, String shortDesc, String fullDesc) {
+    public Law(String lawId, String title, String shortDesc, String fullDesc,List<String>tags) {
         this.lawId = lawId;
         this.title = title;
         this.shortDesc = shortDesc;
@@ -51,5 +54,14 @@ public class Law {
 
     public void setFullDesc(String fullDesc) {
         this.fullDesc = fullDesc;
+    }
+
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
