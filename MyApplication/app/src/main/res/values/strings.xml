@@ -2,4 +2,13 @@
     <string name="app_name">Lawyered</string>
     <string name="eng_contact_me">Contact</string>
     <string name="eng_rate">Rate</string>
+
+    <string-array name="legal_array">
+        <item>Individual</item>
+        <item>Profit-Organization</item>
+        <item>Non profit organization</item>
+    </string-array>
+
+
+
 </resources>

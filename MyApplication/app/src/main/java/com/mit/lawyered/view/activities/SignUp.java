@@ -47,12 +47,12 @@ public class SignUp extends Activity implements OnCheckedChangeListener {
         rg.setOnCheckedChangeListener(this);
         edit1 = (EditText) findViewById(R.id.TFcontactdetails);
         edit2 = (EditText)findViewById(R.id.TFdiscreption);
-        //actv(false);
+        actv(false);
 
         spinner = (Spinner)findViewById(R.id.spinner_select);
-        //adapter = ArrayAdapter.createFromResource(this,R.array.legal_array,android.R.layout.simple_spinner_item);
-        //adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        //spinner.setAdapter(adapter);
+        adapter = ArrayAdapter.createFromResource(this,R.array.legal_array,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(adapter);
         /*spinner.setOnItemClickListener(new AdapterView.OnItemSelectedListener(){
             public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
                 thirdtypestr = parent.getItemAtPosition(pos).toString();

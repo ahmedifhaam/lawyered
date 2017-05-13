@@ -18,6 +18,7 @@ public class LawyerDetails extends AppCompatActivity {
     private ThirdParties thirdParties;
 
     //ui elements
+
     TagView tagGroup;
     TextView lawyerName;
     TextView lawyerRating;
