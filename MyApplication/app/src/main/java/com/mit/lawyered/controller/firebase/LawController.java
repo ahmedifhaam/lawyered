@@ -27,16 +27,8 @@ public  class LawController {
     boolean isLawsaved;
 
     public LawController(OnResponse responder){
+        response=responder;
         mDatabaseLaw= FirebaseDatabase.getInstance().getReference().child("laws");
-    }
-
-    public DatabaseReference getmDatabaseThirdParty(){
-        return mDatabaseLaw;
-    }
-
-    public List<Law> getAllLaws(){
-
-
         mDatabaseLaw.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -55,11 +47,13 @@ public  class LawController {
             }
 
         });
-        return laws;
-
-
 
     }
+
+    public DatabaseReference getmDatabaseThirdParty(){
+        return mDatabaseLaw;
+    }
+
 
     public boolean saveLaw(String title,String smallDesc,String fullDesc,List<String>tags){
         Law law=new Law();

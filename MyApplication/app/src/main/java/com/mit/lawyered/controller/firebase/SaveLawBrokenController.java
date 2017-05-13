@@ -3,6 +3,7 @@ package com.mit.lawyered.controller.firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.mit.lawyered.models.LawBroken;
 import com.mit.lawyered.models.Notification;
 
 /**

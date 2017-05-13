@@ -9,12 +9,15 @@ import com.mit.lawyered.controller.adapter.OnResponse;
 import com.mit.lawyered.models.Law;
 import com.mit.lawyered.models.ThirdParties;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ControlTest extends AppCompatActivity implements OnResponse {
 
     List<ThirdParties> thirdParties;
     List<Law> laws;
+    SaveLawBrokenController saveLawBrokenController;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +31,17 @@ public class ControlTest extends AppCompatActivity implements OnResponse {
        // ThirdPartyController tpc=new ThirdPartyController(this);
 
 
-        LawController lawController=new LawController(this);
+       // LawController lawController=new LawController(this);
+        //List<String>tagList=new ArrayList<>();
+        //tagList.add("Accident");
+        //tagList.add("road");
+        //lawController.saveLaw("Accident","Drunk Driving","hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",tagList);
+        //saveLawBrokenController=new SaveLawBrokenController();
+        //saveLawBrokenController.saveLawBrokenNotification("-Kk0pFlU1oMcJagmZAxl","A drunken driver made this happen");
+       List<String>list=new ArrayList<>();
+        list.add("Criminal");
+        LawsForTagController lawsForTagController=new LawsForTagController(this,list);
+
 
 
 
@@ -47,14 +60,18 @@ public class ControlTest extends AppCompatActivity implements OnResponse {
         }
     }*/
 
-    //Testing for Law Controller
+    //Testing for LawFortAGS Controller
     public void responded(Object obj){
         laws = (List<Law>)obj;
-        Log.d("LAWID",laws.size()+"");
-        for (Law law:laws) {
+        Log.d("LAWSIZE",laws.size()+"");
 
-            Log.d("LAWID",law.getLawId()+"2");
+        for(Law law:laws){
+           List<String>list=law.getTags();
+            for(String tag:list){
+                Log.d("TAG is ",tag+"");
+            }
         }
+
     }
 
 
