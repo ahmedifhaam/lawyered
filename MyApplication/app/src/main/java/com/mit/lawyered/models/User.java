@@ -49,7 +49,7 @@ public class User {
         return email;
     }
 
-    public void setUsername(String username) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
