@@ -1,5 +1,7 @@
 package com.mit.lawyered.models;
 
+import java.util.List;
+
 /**
  * Created by Ahmed on 5/9/2017.
  */
@@ -7,24 +9,25 @@ package com.mit.lawyered.models;
 public class ThirdParties extends User{
     private String tpid;
 
-    private String contactDetails;
+    private String mobile;
+    private String office;
     private String description;
-    private String type;
+    private String revenueType;
     private String reviewAvg;
-    private String individualOrOrg;
-    private String[] tags;
+    private List<String> tags;
 
     public ThirdParties() {
     }
 
-    public ThirdParties(String tpid, String id, String name,String contactDetails, String description, String type, String reviewAvg, String individualOrOrg) {
+    public ThirdParties(String tpid, String id, String name,String mobile, String office,String description,  String revenueType,String reviewAvg) {
         super(id,name);
         this.tpid = tpid;
-        this.contactDetails = contactDetails;
+        this.mobile = mobile;
+        this.office = office;
         this.description = description;
-        this.type = type;
+        this.revenueType = revenueType;
         this.reviewAvg = reviewAvg;
-        this.individualOrOrg = individualOrOrg;
+
     }
 
     public String getTpid() {
@@ -35,14 +38,20 @@ public class ThirdParties extends User{
         this.tpid = tpid;
     }
 
-
-
-    public String getContactDetails() {
-        return contactDetails;
+    public String getMobile() {
+        return mobile;
     }
 
-    public void setContactDetails(String contactDetails) {
-        this.contactDetails = contactDetails;
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getOffice() {
+        return office;
+    }
+
+    public void setOffice(String office) {
+        this.office = office;
     }
 
     public String getDescription() {
@@ -53,12 +62,12 @@ public class ThirdParties extends User{
         this.description = description;
     }
 
-    public String getType() {
-        return type;
+    public String getRevenueType() {
+        return revenueType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setRevenueType(String revenueType) {
+        this.revenueType = revenueType;
     }
 
     public String getReviewAvg() {
@@ -69,19 +78,11 @@ public class ThirdParties extends User{
         this.reviewAvg = reviewAvg;
     }
 
-    public String getIndividualOrOrg() {
-        return individualOrOrg;
-    }
-
-    public void setIndividualOrOrg(String individualOrOrg) {
-        this.individualOrOrg = individualOrOrg;
-    }
-
-    public String[] getTags() {
+    public List<String> getTags() {
         return tags;
     }
 
-    public void setTags(String[] tags) {
+    public void setTags(List<String> tags) {
         this.tags = tags;
     }
 }

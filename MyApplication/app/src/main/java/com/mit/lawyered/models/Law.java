@@ -10,6 +10,10 @@ public class Law {
     private String shortDesc;
     private String fullDesc;
 
+    public Law(){
+
+    }
+
     public Law(String lawId, String title, String shortDesc, String fullDesc) {
         this.lawId = lawId;
         this.title = title;

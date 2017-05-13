@@ -7,7 +7,7 @@ package com.mit.lawyered.models;
 public class User {
     private String id;
     private String name;
-    private String username;
+    private String email;
     private String password;
     private String Balance;
 
@@ -21,10 +21,10 @@ public class User {
 
     }
 
-    public User(String id, String name, String username, String password, String balance) {
+    public User(String id, String name, String email, String password, String balance) {
         this.id = id;
         this.name = name;
-        this.username = username;
+        this.email = email;
         this.password = password;
         Balance = balance;
     }
@@ -45,12 +45,12 @@ public class User {
         this.name = name;
     }
 
-    public String getUsername() {
-        return username;
+    public String getEmail() {
+        return email;
     }
 
     public void setUsername(String username) {
-        this.username = username;
+        this.email = email;
     }
 
     public String getPassword() {
