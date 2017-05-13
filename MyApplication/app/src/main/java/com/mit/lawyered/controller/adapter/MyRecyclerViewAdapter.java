@@ -31,8 +31,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            label = (TextView) itemView.findViewById(R.id.textView);
-            dateTime = (TextView) itemView.findViewById(R.id.textView2);
+            label = (TextView) itemView.findViewById(R.id.titleCard);
+            dateTime = (TextView) itemView.findViewById(R.id.shortDescCard);
             Log.i(LOG_TAG, "Adding Listener");
             itemView.setOnClickListener(this);
         }

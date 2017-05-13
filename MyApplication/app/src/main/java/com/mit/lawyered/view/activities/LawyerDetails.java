@@ -3,12 +3,14 @@ package com.mit.lawyered.view.activities;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mit.lawyered.R;
 import com.mit.lawyered.models.ThirdParties;
 import com.taglib.Tag;
 import com.taglib.TagView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Ahmed on 5/9/2017.
@@ -44,7 +46,12 @@ public class LawyerDetails extends AppCompatActivity {
             }
         });*/
         thirdParties = new ThirdParties("tpid","userid","Ahmed Ifhaam","0776699609","Iam a good lawyer","NPO","4.0/5","Individual");
-        thirdParties.setTags(new String[]{"Test1","Test2","test 3"});
+        //changed string array to list
+        List<String> tags=new ArrayList<>();
+        tags.add("tag1");
+        tags.add("tag2");
+        tags.add("tag3");
+        thirdParties.setTags(tags);
         init();
     }
 

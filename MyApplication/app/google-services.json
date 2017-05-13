@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "777584522788",
+    "firebase_url": "https://myapplication-75b86.firebaseio.com",
+    "project_id": "myapplication-75b86",
+    "storage_bucket": "myapplication-75b86.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:777584522788:android:be6761acf3be39ae",
+        "android_client_info": {
+          "package_name": "com.mit.lawyered"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "777584522788-h202b7n16ih5b0spfo8uo9q0na122fds.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mit.lawyered",
+            "certificate_hash": "5e1b2bf0bbc63846f5352e7155b56d846430974f"
+          }
+        },
+        {
+          "client_id": "777584522788-msc3er9gq0jd3u7ekclmnrfoeegpb0nd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDupK7MkkNHyJ5FOiS2mJ8vn1TW4ObqnSY"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "777584522788-msc3er9gq0jd3u7ekclmnrfoeegpb0nd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
