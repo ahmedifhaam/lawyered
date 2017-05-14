@@ -18,15 +18,15 @@ import java.util.List;
  * Created by ASUS on 5/14/2017.
  */
 
-public class ThirdPartyListForTagsController {
+public class NotifyThirdPartyListForTagsController {
     DatabaseReference mDatabaseLaw;
 
     List<ThirdParties> lawyerDescList=new ArrayList<>();
     public OnResponseThirdParties response;
     List <String> list;
+    SaveNewCaseRequestNotification saveNewCaseRequestNotification;
 
-
-    public ThirdPartyListForTagsController(OnResponseThirdParties responder, final List<String>list){
+    public NotifyThirdPartyListForTagsController(OnResponseThirdParties responder, final List<String>list, final String lawId, final String desc){
         mDatabaseLaw= FirebaseDatabase.getInstance().getReference("thirdParties");
         this.list=list;
         response=responder;
@@ -45,7 +45,7 @@ public class ThirdPartyListForTagsController {
                 }
                 Log.d("LAWYERSIZE",lawyerDescList.size()+"");
                 response.respondedThird(lawyerDescList);
-
+                saveNewCaseRequestNotification=new SaveNewCaseRequestNotification(lawId,desc,lawyerDescList);
 
             }
 

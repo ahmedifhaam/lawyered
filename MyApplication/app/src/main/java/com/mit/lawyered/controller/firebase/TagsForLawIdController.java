@@ -21,7 +21,7 @@ public class TagsForLawIdController {
 
     public DatabaseReference mDatabaseTags;
 
-    List<String>tagList=new ArrayList<>();
+    public List<String>tagList=new ArrayList<>();
 
 
 
@@ -39,11 +39,11 @@ public class TagsForLawIdController {
 
                 // Result will be holded Here
                 for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                   tagList.add(String.valueOf(dsp.getValue())); //add result into array list
+                   getTagList().add(String.valueOf(dsp.getValue())); //add result into array list
 
 
                 }
-                onResponder.responded(tagList);
+                onResponder.responded(getTagList());
             }
 
             @Override
@@ -55,6 +55,10 @@ public class TagsForLawIdController {
 
     }
 
+
+    public List<String> getTagList() {
+        return tagList;
+    }
 
 
 }
