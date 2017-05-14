@@ -21,11 +21,14 @@ public  class ThirdPartyController {
 
     List<ThirdParties> parties = new ArrayList<>();
     private static final String TAG = "ControlTest";
+    ThirdParties thirdParty;
 
     public static final String EXTRA_POST_KEY = "post_key";
     public DatabaseReference mDatabaseThirdParty;
     public OnResponse response;
 
+
+    //Get all lawyers
     public ThirdPartyController(OnResponse responder){
         response = responder;
         mDatabaseThirdParty= FirebaseDatabase.getInstance().getReference().child("thirdParties");
@@ -51,6 +54,34 @@ public  class ThirdPartyController {
 
         });
     }
+
+    //Get lawyer by id
+    public ThirdPartyController(OnResponse responder, final String lawyerId){
+        response = responder;
+        mDatabaseThirdParty= FirebaseDatabase.getInstance().getReference().child("thirdParties");
+        mDatabaseThirdParty.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot partyDataSnapshot : dataSnapshot.getChildren()) {
+
+                    if (partyDataSnapshot.getKey().equals(lawyerId)){
+                       thirdParty = partyDataSnapshot.getValue(ThirdParties.class);
+                    }
+
+                }
+
+                response.responded(thirdParty);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+    }
+
 
     public DatabaseReference getmDatabaseThirdParty(){
         return mDatabaseThirdParty;

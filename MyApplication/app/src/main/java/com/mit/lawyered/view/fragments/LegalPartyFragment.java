@@ -1,8 +1,8 @@
 package com.mit.lawyered.view.fragments;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.annotation.IdRes;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -87,44 +87,7 @@ public class LegalPartyFragment extends Fragment  {
       lOffice = (EditText) view.findViewById(R.id.LegalOffice);
       lDescr = (EditText) view.findViewById(R.id.profileDescription);
 
-        lPartySignUp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String lnamestr = lname.getText().toString();
-                String lusernamestr = lusername.getText().toString();
-                String lpasswordstr = lpassword.getText().toString();
-                String lpassword2str = lpassword2.getText().toString();
-                String lMobileStr = lMobile.getText().toString();
-                String lOfficeStr = lOffice.getText().toString();
-                String lDescrStr = lDescr.getText().toString();
 
-                if (!lpasswordstr.equals(lpassword2str)) {
-
-                    Toast pass = Toast.makeText(getActivity(), "Passwords don't match!", Toast.LENGTH_SHORT);
-                    pass.show();
-                }
-                else{
-                    //insert details into DB
-                    ThirdParties tp = new ThirdParties();
-                    User u = new User();
-                    u.setName(lnamestr);
-                    u.setEmail(lusernamestr);
-                    u.setPassword(lpasswordstr);
-                    tp.setMobile(lMobileStr);
-                    tp.setOffice(lOfficeStr);
-                    tp.setDescription(lDescrStr);
-                    tp.setRevenueType(revType);
-                    tp.setTags(tagList);
-
-                    signUpController.signUpForThirdParty(u,tp);
-
-//Should set tags to model object third party here
-
-
-                    //helper.insertContact(c);
-                }
-            }
-        });
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>
@@ -165,27 +128,53 @@ public class LegalPartyFragment extends Fragment  {
                 tagGroup.addTag(tag );
             }
         });
+
+        lPartySignUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String lnamestr = lname.getText().toString();
+                String lusernamestr = lusername.getText().toString();
+                String lpasswordstr = lpassword.getText().toString();
+                String lpassword2str = lpassword2.getText().toString();
+                String lMobileStr = lMobile.getText().toString();
+                String lOfficeStr = lOffice.getText().toString();
+                String lDescrStr = lDescr.getText().toString();
+
+                if (!lpasswordstr.equals(lpassword2str)) {
+
+                    Toast pass = Toast.makeText(getActivity(), "Passwords don't match!", Toast.LENGTH_SHORT);
+                    pass.show();
+                }
+                else{
+                    //insert details into DB
+                    ThirdParties tp = new ThirdParties();
+                    User u = new User();
+                    u.setName(lnamestr);
+                    u.setEmail(lusernamestr);
+                    u.setPassword(lpasswordstr);
+                    u.setType("ThirdParty");
+                    tp.setName(lnamestr);
+                    tp.setMobile(lMobileStr);
+                    tp.setOffice(lOfficeStr);
+                    tp.setDescription(lDescrStr);
+                    tp.setRevenueType(revType);
+                    tp.setTags(tagList);
+
+                    signUpController.signUpForThirdParty(u,tp);
+
+//Should set tags to model object third party here
+
+
+                    //helper.insertContact(c);
+                }
+            }
+        });
         return view;
     }
 
 
 
-    public void onSignupClick(View v) {
 
-
-        if (v.getId() == R.id.btnLPartySignUp) {
-
-
-            /*int checked = rg.getCheckedRadioButtonId();
-            RadioButton rb = (RadioButton) v.findViewById(checked);
-            int radioId = rg.indexOfChild(rb);
-            RadioButton checkedBtn = (RadioButton) rg.getChildAt(radioId);
-            String revenueType = (String) checkedBtn.getText();*/
-
-
-
-        }
-    }
 
 
 

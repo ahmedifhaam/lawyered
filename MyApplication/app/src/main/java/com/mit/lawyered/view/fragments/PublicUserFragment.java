@@ -79,6 +79,7 @@ public class PublicUserFragment extends Fragment {
                     user.setName(namestr);
                     user.setEmail(usernamestr);
                     user.setPassword(passwordstr);
+                    user.setType("Public");
                     signUpController.signUpForNormalUser(user);
 
                     //helper.insertContact(c);

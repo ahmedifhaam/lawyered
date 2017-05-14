@@ -5,16 +5,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.mit.lawyered.R;
-import com.mit.lawyered.controller.adapter.OnResponse;
+import com.mit.lawyered.controller.adapter.OnResponseLaw;
+import com.mit.lawyered.controller.adapter.OnResponseThirdParties;
 import com.mit.lawyered.models.Law;
 import com.mit.lawyered.models.ThirdParties;
 
 import java.util.List;
 
-public class ControlTest extends AppCompatActivity implements OnResponse {
+public class ControlTest extends AppCompatActivity implements OnResponseThirdParties,OnResponseLaw {
 
     List<ThirdParties> thirdParties;
     List<Law> laws;
+
+    ThirdParties party;
+    Law law;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +33,32 @@ public class ControlTest extends AppCompatActivity implements OnResponse {
        // ThirdPartyController tpc=new ThirdPartyController(this);
 
 
-        LawController lawController=new LawController(this);
+       // LawController lawController=new LawController(this);
+        //List<String>tagList=new ArrayList<>();
+        //tagList.add("Accident");
+        //tagList.add("road");
+        //lawController.saveLaw("Accident","Drunk Driving","hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",tagList);
+        //saveLawBrokenController=new SaveLawBrokenController();
+        //saveLawBrokenController.saveLawBrokenNotification("-Kk0pFlU1oMcJagmZAxl","A drunken driver made this happen");
+      /* List<String>list=new ArrayList<>();
+        list.add("Criminal");
+        */
+
+//Testing for all lawyer detail for lawyerid
+
+        //ThirdPartyController thirdPartyController=new ThirdPartyController(this,"RmvNlFe5W9Y4wFu9zFbxbGmfeQl1");
+
+//Testing for all law detail for lawid
+        //LawController lawController=new LawController(this,"-Kk1E_3XbavLJwAfeMiM");
 
 
 
+
+        //Testing for case request ntification
+
+        //LawController lawController=new LawController(this,"-Kk1E_3XbavLJwAfeMiM");
+
+        //TagsForLawIdController tagsForLawIdController =new TagsForLawIdController(thirdParties,"-Kk1E_3XbavLJwAfeMiM","Drunken driver did");
 
     }
 
@@ -47,15 +74,16 @@ public class ControlTest extends AppCompatActivity implements OnResponse {
         }
     }*/
 
-    //Testing for Law Controller
-    public void responded(Object obj){
-        laws = (List<Law>)obj;
-        Log.d("LAWID",laws.size()+"");
-        for (Law law:laws) {
 
-            Log.d("LAWID",law.getLawId()+"2");
-        }
+
+
+    @Override
+    public void respondedLaw(Object law) {
+      law=(Law)law;
     }
 
-
+    @Override
+    public void respondedThird(Object tags) {
+        thirdParties=(List<ThirdParties>)tags;
+    }
 }

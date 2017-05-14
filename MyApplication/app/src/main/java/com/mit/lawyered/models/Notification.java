@@ -9,6 +9,8 @@ public class Notification {
     private String description;
     private String type;
     private String lbid;
+    private String userId;
+    private int status;
 
     public Notification(){
 
@@ -45,5 +47,21 @@ public class Notification {
 
     public void setLbid(String lbid) {
         this.lbid = lbid;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

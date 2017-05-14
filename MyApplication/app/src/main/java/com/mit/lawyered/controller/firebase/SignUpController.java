@@ -37,6 +37,7 @@ public class SignUpController {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     String userID = mAuth.getCurrentUser().getUid();
+                    user.setId(userID);
                     DatabaseReference current_user_db = mDatabase.child(userID);
                     current_user_db.setValue(user);
 
@@ -63,8 +64,11 @@ public class SignUpController {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()) {
                     String userID = mAuth.getCurrentUser().getUid();
+                    user.setId(userID);
                     DatabaseReference current_user_db = mDatabase.child(userID);
                     current_user_db.setValue(user);
+
+                        thirdParties.setTpid(userID);
 
                         mDatabaseThirdParty.child(userID).setValue(thirdParties);
 
