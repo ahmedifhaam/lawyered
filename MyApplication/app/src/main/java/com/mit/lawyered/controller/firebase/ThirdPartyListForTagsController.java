@@ -7,27 +7,26 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mit.lawyered.controller.adapter.OnResponse;
-import com.mit.lawyered.models.Law;
+import com.mit.lawyered.controller.adapter.OnResponseThirdParties;
+import com.mit.lawyered.models.ThirdParties;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * Created by ASUS on 5/13/2017.
+ * Created by ASUS on 5/14/2017.
  */
 
-public class LawsForTagController {
-
+public class ThirdPartyListForTagsController {
     DatabaseReference mDatabaseLaw;
 
-    List<Law>lawDescList=new ArrayList<>();
-    public OnResponse response;
+    List<ThirdParties> lawyerDescList=new ArrayList<>();
+    public OnResponseThirdParties response;
     List <String> list;
 
-    public LawsForTagController(OnResponse responder, final List<String>list){
-        mDatabaseLaw= FirebaseDatabase.getInstance().getReference("laws");
+    public ThirdPartyListForTagsController(OnResponseThirdParties responder, final List<String>list){
+        mDatabaseLaw= FirebaseDatabase.getInstance().getReference("thirdParties");
         this.list=list;
         response=responder;
         mDatabaseLaw.addValueEventListener(new ValueEventListener() {
@@ -35,16 +34,16 @@ public class LawsForTagController {
             public void onDataChange(DataSnapshot dataSnapshot) {
 
                 for (DataSnapshot lawDataSnapshot : dataSnapshot.getChildren()) {
-                    Law law= lawDataSnapshot.getValue(Law.class);
-                    List<String>tags=law.getTags();
+                    ThirdParties thirdParties= lawDataSnapshot.getValue(ThirdParties.class);
+                    List<String>tags=thirdParties.getTags();
                     if(!Collections.disjoint(tags,list)){
-                        law.setFullDesc(null);
-                        lawDescList.add(law);
+
+                        lawyerDescList.add(thirdParties);
 
                     }
                 }
-                Log.d("LAWSIZE",lawDescList.size()+"");
-                response.responded(lawDescList);
+                Log.d("LAWYERSIZE",lawyerDescList.size()+"");
+                response.respondedThird(lawyerDescList);
 
             }
 
@@ -56,10 +55,4 @@ public class LawsForTagController {
         });
 
     }
-
-    public List<Law> getAllLawDescFortags(){
-
-        return lawDescList;
-    }
-
 }

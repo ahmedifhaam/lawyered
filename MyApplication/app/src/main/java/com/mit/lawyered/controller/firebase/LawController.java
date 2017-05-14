@@ -5,7 +5,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.mit.lawyered.controller.adapter.OnResponse;
+import com.mit.lawyered.controller.adapter.OnResponseLaw;
 import com.mit.lawyered.models.Law;
 
 import java.util.ArrayList;
@@ -22,11 +22,12 @@ public  class LawController {
 
     public static final String EXTRA_POST_KEY = "post_key";
     public DatabaseReference mDatabaseLaw;
-    public OnResponse response;
+    public OnResponseLaw response;
 
     boolean isLawsaved;
+    Law law;
 
-    public LawController(OnResponse responder){
+    public LawController(OnResponseLaw responder){
         response=responder;
         mDatabaseLaw= FirebaseDatabase.getInstance().getReference().child("laws");
         mDatabaseLaw.addValueEventListener(new ValueEventListener() {
@@ -37,7 +38,31 @@ public  class LawController {
                     Law law = partyDataSnapshot.getValue(Law.class);
                     laws.add(law);
                 }
-                response.responded(laws);
+                response.respondedLaw(laws);
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
+    }
+    public LawController(OnResponseLaw responder, final String lawId){
+        response=responder;
+        mDatabaseLaw= FirebaseDatabase.getInstance().getReference().child("laws");
+        mDatabaseLaw.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot partyDataSnapshot : dataSnapshot.getChildren()) {
+                    if (partyDataSnapshot.getKey().equals(lawId)){
+                       law= partyDataSnapshot.getValue(Law.class);
+                    }
+                }
+                response.respondedLaw(law);
 
             }
 
