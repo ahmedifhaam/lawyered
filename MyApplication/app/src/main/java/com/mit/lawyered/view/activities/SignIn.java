@@ -48,27 +48,27 @@ public class SignIn extends AppCompatActivity {
         mDatabase= FirebaseDatabase.getInstance().getReference().child("users");
         mLoginEmailField=(EditText)findViewById(R.id.TFuname);
         mLoginPasswordField=(EditText)findViewById(R.id.TFpass);
-                        mLoginBtn=(Button)findViewById(R.id.BTNsignin);
+        mLoginBtn=(Button)findViewById(R.id.BTNsignin);
 
-                        mLoginBtn.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                checkLogIn();
-                            }
-                        });
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkLogIn();
+            }
+        });
 
 
-                    }
+    }
 
-                private void checkLogIn() {
-                    String email=mLoginEmailField.getText().toString().trim();
-                    String password=mLoginPasswordField.getText().toString().trim();
+    private void checkLogIn() {
+        String email=mLoginEmailField.getText().toString().trim();
+        String password=mLoginPasswordField.getText().toString().trim();
 
-                    if(!TextUtils.isEmpty(email)&& !TextUtils.isEmpty(password)){
-                        mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+        if(!TextUtils.isEmpty(email)&& !TextUtils.isEmpty(password)){
+            mAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if(task.isSuccessful()){
                  checkUserExist();
                     }else{
                         Toast.makeText(SignIn.this, "Please Sign Up", Toast.LENGTH_SHORT).show();

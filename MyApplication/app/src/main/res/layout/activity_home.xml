@@ -7,57 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mit.lawyered.view.activities.Home">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/my_toolbar"
+
+    <FrameLayout
+        android:id="@+id/frame_layout"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
-    <LinearLayout
-        android:layout_below="@+id/my_toolbar"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigation"
+        android:animateLayoutChanges="true">
 
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <LinearLayout
-                android:orientation="vertical"
-                android:id="@+id/search_panel"
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <AutoCompleteTextView
-                    android:id="@+id/search_box"
-
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-                <com.taglib.TagView
-                    android:id="@+id/tag_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                </com.taglib.TagView>
-            </LinearLayout>
-
-
-
-            <FrameLayout
-                android:id="@+id/frame_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_above="@+id/navigation"
-                android:animateLayoutChanges="true">
-
-            </FrameLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

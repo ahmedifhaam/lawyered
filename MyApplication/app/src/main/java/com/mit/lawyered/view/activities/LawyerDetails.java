@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.mit.lawyered.R;
-import com.mit.lawyered.models.DataLawProfiles;
 import com.mit.lawyered.models.ThirdParties;
 import com.taglib.Tag;
 import com.taglib.TagView;
@@ -47,10 +46,7 @@ public class LawyerDetails extends AppCompatActivity {
                 tagGroup.remove(position);
             }
         });*/
-        DataLawProfiles prof = (DataLawProfiles) getIntent().getExtras().get("LAWYERS");
-        thirdParties = getThirdParty(prof);
-
-        //thirdParties = new ThirdParties("tpid","userid","Ahmed Ifhaam","0776699609","Iam a good lawyer","NPO","4.0/5","Individual");
+        thirdParties = new ThirdParties("tpid","userid","Ahmed Ifhaam","0776699609","Iam a good lawyer","NPO","4.0/5","Individual");
         //changed string array to list
         List<String> tags=new ArrayList<>();
         tags.add("tag1");
@@ -70,10 +66,5 @@ public class LawyerDetails extends AppCompatActivity {
             tag.tagTextSize=25.0f;
             tagGroup.addTag(tag );
         }
-    }
-
-    private ThirdParties getThirdParty(DataLawProfiles profile){
-        ThirdParties thirdParties = new ThirdParties("tpid","id",profile.getProfile(),"mobile","office",profile.getDescription(),"reve type",profile.getRate());
-        return thirdParties;
     }
 }

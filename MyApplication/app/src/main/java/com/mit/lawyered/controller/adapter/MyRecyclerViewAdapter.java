@@ -1,23 +1,15 @@
 package com.mit.lawyered.controller.adapter;
 
 
-import android.app.Activity;
-import android.app.Fragment;
-import android.content.Intent;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.mit.lawyered.R;
 import com.mit.lawyered.models.DataObject;
-import com.mit.lawyered.models.Law;
-import com.mit.lawyered.view.activities.DialogActivity;
-import com.mit.lawyered.view.fragments.LawsFragment;
 
 import java.util.ArrayList;
 /**
@@ -25,43 +17,38 @@ import java.util.ArrayList;
  */
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.DataObjectHolder>
-
 {
 
     private static String LOG_TAG = "MyRecyclerViewAdapter";
-    private ArrayList<Law> mDataset;
+    private ArrayList<DataObject> mDataset;
     private static MyClickListener myClickListener;
 
-
-    public class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public static class DataObjectHolder extends RecyclerView.ViewHolder
+            implements View
+            .OnClickListener {
         TextView label;
         TextView dateTime;
-        Button mark;
 
         public DataObjectHolder(View itemView) {
             super(itemView);
-            label = (TextView) itemView.findViewById(R.id.textView);
-            dateTime = (TextView) itemView.findViewById(R.id.textView2);
-            Button btnMore = (Button) itemView.findViewById(R.id.btnViewMore);
-            mark = (Button) itemView.findViewById(R.id.btnMark);
-            btnMore.setOnClickListener(this);
+            label = (TextView) itemView.findViewById(R.id.titleCard);
+            dateTime = (TextView) itemView.findViewById(R.id.shortDescCard);
             Log.i(LOG_TAG, "Adding Listener");
-            //itemView.setOnClickListener(this);
+            itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getAdapterPosition());
-
+            myClickListener.onItemClick(getAdapterPosition(), v);
         }
-
-
     }
 
+    public void setOnItemClickListener(MyClickListener myClickListener) {
+        this.myClickListener = myClickListener;
+    }
 
-    public MyRecyclerViewAdapter(ArrayList<Law> myDataset,MyClickListener listener) {
+    public MyRecyclerViewAdapter(ArrayList<DataObject> myDataset) {
         mDataset = myDataset;
-       this.myClickListener = listener;
     }
 
     @Override
@@ -75,24 +62,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     @Override
-    public void onBindViewHolder(DataObjectHolder holder, final int position) {
-        holder.label.setText(mDataset.get(position).getTitle());
-        holder.dateTime.setText(mDataset.get(position).getShortDesc());
-
-        holder.mark.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(),DialogActivity.class);
-                Bundle extras = new Bundle();
-                extras.putParcelable("LAW",mDataset.get(position));
-                intent.putExtras(extras);
-                v.getContext().startActivity(intent);
-
-            }
-        });
+    public void onBindViewHolder(DataObjectHolder holder, int position) {
+        holder.label.setText(mDataset.get(position).getmText1());
+        holder.dateTime.setText(mDataset.get(position).getmText2());
     }
 
-    public void addItem(Law dataObj, int index) {
+    public void addItem(DataObject dataObj, int index) {
         mDataset.add(index, dataObj);
         notifyItemInserted(index);
     }
@@ -107,17 +82,9 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
         return mDataset.size();
     }
 
-
-
-    protected void onActivityResult(int requestCode,int resultCode,Intent data){
-
+    public interface MyClickListener {
+        public void onItemClick(int position, View v);
     }
 
-    public ArrayList<Law> getmDataset() {
-        return mDataset;
-    }
 
-    public void setmDataset(ArrayList<Law> mDataset) {
-        this.mDataset = mDataset;
-    }
 }

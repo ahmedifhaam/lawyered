@@ -18,6 +18,6 @@ public class LawsForTagController {
     }
 
     public List<String> getAllLawDescFortags(List<String>  tagList){
-        return null;
+        
     }
 }
