@@ -47,4 +47,16 @@ public class Tag {
         this.layoutBorderSize = layoutBorderSize;
         this.layoutBorderColor = layoutBorderColor;
     }
+
+    public boolean equals(Object obj){
+        if(!(obj instanceof Tag)){
+            return false;
+        }else{
+            if(((Tag)obj).text.equalsIgnoreCase(this.text)){
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

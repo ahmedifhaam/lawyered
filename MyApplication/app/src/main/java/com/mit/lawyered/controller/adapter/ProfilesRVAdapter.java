@@ -1,14 +1,17 @@
 package com.mit.lawyered.controller.adapter;
 
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.mit.lawyered.R;
 import com.mit.lawyered.models.DataLawProfiles;
+import com.mit.lawyered.view.activities.DialogActivity;
 
 import java.util.ArrayList;
 
@@ -20,7 +23,7 @@ public class ProfilesRVAdapter extends RecyclerView.Adapter<ProfilesRVAdapter.Da
 
     private static String LOG_TAG = "ProfilesRVAdapter";
     private ArrayList<DataLawProfiles> dataset;
-    private static ProfilesRVAdapter.MyClickListener myClickListener;
+    private static MyClickListener myClickListener;
 
     public static class DataObjectHolder extends RecyclerView.ViewHolder implements View.OnClickListener
     {
@@ -28,27 +31,32 @@ public class ProfilesRVAdapter extends RecyclerView.Adapter<ProfilesRVAdapter.Da
         TextView description;
         TextView rate;
 
+
         public DataObjectHolder(View itemView) {
             super(itemView);
             profileName = (TextView) itemView.findViewById(R.id.tvProfileName);
             description = (TextView) itemView.findViewById(R.id.tvDescr);
             rate = (TextView) itemView.findViewById(R.id.tvRate);
+
+            Button btnViewMore = (Button)itemView.findViewById(R.id.btnViewMore);
+            btnViewMore.setOnClickListener(this);
             Log.i(LOG_TAG, "Adding Listener");
-            itemView.setOnClickListener(this);
+            //itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View v) {
-            myClickListener.onItemClick(getAdapterPosition(), v);
+            myClickListener.onItemClick(getAdapterPosition());
         }
     }
 
-    public void setOnItemClickListener(ProfilesRVAdapter.MyClickListener myClickListener) {
+    public void setOnItemClickListener(MyClickListener myClickListener) {
         this.myClickListener = myClickListener;
     }
 
-    public ProfilesRVAdapter(ArrayList<DataLawProfiles> myDataset) {
+    public ProfilesRVAdapter(ArrayList<DataLawProfiles> myDataset,MyClickListener clickListener) {
         dataset = myDataset;
+        this.setOnItemClickListener(clickListener);
     }
 
     @Override
@@ -66,6 +74,8 @@ public class ProfilesRVAdapter extends RecyclerView.Adapter<ProfilesRVAdapter.Da
         holder.profileName.setText(dataset.get(position).getProfile());
         holder.description.setText(dataset.get(position).getDescription());
         holder.rate.setText(dataset.get(position).getRate());
+
+
     }
 
     public void addItem(DataLawProfiles obj, int index) {
@@ -83,9 +93,7 @@ public class ProfilesRVAdapter extends RecyclerView.Adapter<ProfilesRVAdapter.Da
         return dataset.size();
     }
 
-    public interface MyClickListener {
-        public void onItemClick(int position, View v);
-    }
+
 
 
 }

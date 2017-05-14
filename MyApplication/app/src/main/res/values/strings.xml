@@ -2,6 +2,7 @@
     <string name="app_name">Lawyered</string>
     <string name="eng_contact_me">Contact</string>
     <string name="eng_rate">Rate</string>
+    <string name="request_help">Request Help</string>
 
     <string-array name="legal_array">
         <item>Individual</item>
@@ -9,6 +10,12 @@
         <item>Non profit organization</item>
     </string-array>
 
-
-
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnUserSignUp">Sign Up</string>
+    <string name="LegalMobile">Mobile Number</string>
+    <string name="LegalOffice">Office Number</string>
+    <string name="profileDescription">Description</string>
 </resources>
+
+
+

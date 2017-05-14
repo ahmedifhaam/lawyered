@@ -1,6 +1,7 @@
 package com.mit.lawyered.view.fragments;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,11 +13,14 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.mit.lawyered.R;
+import com.mit.lawyered.controller.adapter.MyClickListener;
 import com.mit.lawyered.controller.adapter.MyRecyclerViewAdapter;
 import com.mit.lawyered.models.DataObject;
 import com.mit.lawyered.models.Law;
+import com.mit.lawyered.view.activities.LawDetails;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +29,7 @@ import java.util.List;
  * Created by Ahmed on 5/8/2017.
  */
 
-public class LawsFragment extends Fragment implements SearchView.OnQueryTextListener{
+public class LawsFragment extends Fragment implements SearchView.OnQueryTextListener,MyClickListener{
 
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -35,10 +39,12 @@ public class LawsFragment extends Fragment implements SearchView.OnQueryTextList
     List<DataObject> dataObjects;
     //private ArrayAdapter<String> adapter;
     private Context context;
+    List<Law> lawlist;
 
-
-    public static LawsFragment newInstance(){
-        return new LawsFragment();
+    public static LawsFragment newInstance(List<Law> lawlist){
+        LawsFragment lawsFragment = new LawsFragment();
+        lawsFragment.setLawlist(lawlist);
+        return lawsFragment;
     }
 
     public LawsFragment(){
@@ -63,9 +69,10 @@ public class LawsFragment extends Fragment implements SearchView.OnQueryTextList
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.my_recycler_view);
         mRecyclerView.setHasFixedSize(true);
+        Button btnViewMore = (Button)mRecyclerView.findViewById(R.id.view_more);
 
         //calling to set law list to card view
-        List<Law> lawlist = new ArrayList<>();
+        lawlist = new ArrayList<>();
         List<String>tagList=new ArrayList<>();
         tagList.add("Criminal");
         tagList.add("Murder");
@@ -75,7 +82,9 @@ public class LawsFragment extends Fragment implements SearchView.OnQueryTextList
         lawlist.add(law1);
         lawlist.add(law2);
 
-        mAdapter = new MyRecyclerViewAdapter(getDataSet(lawlist));
+        //mAdapter = new MyRecyclerViewAdapter(getDataSet(lawlist),this);
+        mAdapter = new MyRecyclerViewAdapter((ArrayList<Law>) lawlist,this);
+
         mRecyclerView.setAdapter(mAdapter);
 
         mLayoutManager = new LinearLayoutManager(getActivity());
@@ -106,13 +115,13 @@ public class LawsFragment extends Fragment implements SearchView.OnQueryTextList
     @Override
     public void onResume() {
         super.onResume();
-        ((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter
+        /**((MyRecyclerViewAdapter) mAdapter).setOnItemClickListener(new MyRecyclerViewAdapter
                 .MyClickListener() {
             @Override
             public void onItemClick(int position, View v) {
                 Log.i(LOG_TAG, " Clicked on Item " + position);
             }
-        });
+        });*/
     }
 
     private ArrayList<DataObject> getDataSet() {
@@ -167,7 +176,27 @@ public class LawsFragment extends Fragment implements SearchView.OnQueryTextList
         //setListAdapter(adapter);
     }
 
+    public void launchLawDetails(int position){
+        lawlist.get(position);
+        Intent lawDetailsIntent = new Intent(this.getActivity(), LawDetails.class);
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("LAW",lawlist.get(position));
+        lawDetailsIntent.putExtras(bundle);
+        startActivity(lawDetailsIntent);
+    }
 
+    @Override
+    public void onItemClick(int position) {
+        Log.d("www","called"+position);
+        launchLawDetails(position);
+    }
 
+    public List<Law> getLawlist() {
+        return lawlist;
+    }
+
+    public void setLawlist(List<Law> lawlist) {
+        this.lawlist = lawlist;
+    }
 }
 
