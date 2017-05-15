@@ -34,6 +34,17 @@ public class ThirdPartyListForTagsController {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+                if(list.size()==0){
+                    for (DataSnapshot lawDataSnapshot : dataSnapshot.getChildren()) {
+                        ThirdParties thirdParties= lawDataSnapshot.getValue(ThirdParties.class);
+
+
+                            lawyerDescList.add(thirdParties);
+
+
+                    }
+                }
+
                 for (DataSnapshot lawDataSnapshot : dataSnapshot.getChildren()) {
                     ThirdParties thirdParties= lawDataSnapshot.getValue(ThirdParties.class);
                     List<String>tags=thirdParties.getTags();
@@ -42,6 +53,7 @@ public class ThirdPartyListForTagsController {
                         lawyerDescList.add(thirdParties);
 
                     }
+
                 }
                 Log.d("LAWYERSIZE",lawyerDescList.size()+"");
                 response.respondedThird(lawyerDescList);

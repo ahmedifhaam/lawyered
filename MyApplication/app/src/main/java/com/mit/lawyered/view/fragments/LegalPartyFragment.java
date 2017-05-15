@@ -1,5 +1,6 @@
 package com.mit.lawyered.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v4.app.Fragment;
@@ -17,9 +18,11 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.mit.lawyered.R;
+import com.mit.lawyered.controller.adapter.OnResponse;
 import com.mit.lawyered.controller.firebase.SignUpController;
 import com.mit.lawyered.models.ThirdParties;
 import com.mit.lawyered.models.User;
+import com.mit.lawyered.view.activities.Home;
 import com.taglib.Tag;
 import com.taglib.TagView;
 
@@ -27,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class LegalPartyFragment extends Fragment  {
+public class LegalPartyFragment extends Fragment implements OnResponse {
 
 
     String revType;
@@ -56,10 +59,11 @@ public class LegalPartyFragment extends Fragment  {
     EditText lOffice;
     EditText lDescr;
 
+    boolean success;
+
     public LegalPartyFragment() {
         // Required empty public constructor
 
-        signUpController=new SignUpController();
     }
 
 
@@ -159,8 +163,9 @@ public class LegalPartyFragment extends Fragment  {
                     tp.setDescription(lDescrStr);
                     tp.setRevenueType(revType);
                     tp.setTags(tagList);
+                    tp.setReviewAvg("0");
 
-                    signUpController.signUpForThirdParty(u,tp);
+                    signUpController=new SignUpController(LegalPartyFragment.this,u,tp);
 
 //Should set tags to model object third party here
 
@@ -173,11 +178,15 @@ public class LegalPartyFragment extends Fragment  {
     }
 
 
-
-
-
-
-
-
-
+    @Override
+    public void responded(Object issuccess) {
+        success=(boolean)issuccess;
+        if(success){
+        Intent myIntent = new Intent(getActivity(),Home.class);
+        getActivity().startActivity(myIntent);
+        Toast.makeText(getActivity(), "Please Sign In", Toast.LENGTH_SHORT).show();
+                  }else{
+                        Toast.makeText(getActivity(), "Email is probably wrong", Toast.LENGTH_LONG);
+                    }
+    }
 }

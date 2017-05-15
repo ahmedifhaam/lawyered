@@ -33,6 +33,16 @@ public class LawsForTagListController {
         mDatabaseLaw.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                if(list.size()==0){
+                    for (DataSnapshot lawDataSnapshot : dataSnapshot.getChildren()) {
+                        Law law= lawDataSnapshot.getValue(Law.class);
+
+
+                        lawDescList.add(law);
+
+
+                    }
+                }
 
                 for (DataSnapshot lawDataSnapshot : dataSnapshot.getChildren()) {
                     Law law= lawDataSnapshot.getValue(Law.class);

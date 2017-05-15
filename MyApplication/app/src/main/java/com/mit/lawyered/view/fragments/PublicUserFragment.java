@@ -1,7 +1,9 @@
 package com.mit.lawyered.view.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +13,13 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.mit.lawyered.R;
+import com.mit.lawyered.controller.adapter.OnResponse;
 import com.mit.lawyered.controller.firebase.SignUpController;
 import com.mit.lawyered.models.User;
+import com.mit.lawyered.view.activities.Home;
 
 
-public class PublicUserFragment extends Fragment {
+public class PublicUserFragment extends Fragment implements OnResponse{
 
 
 
@@ -27,6 +31,7 @@ public class PublicUserFragment extends Fragment {
     EditText username;
     EditText password;
     EditText password2;
+    boolean success;
 
     ArrayAdapter<CharSequence> adapter;
 
@@ -36,7 +41,7 @@ public class PublicUserFragment extends Fragment {
 
     public PublicUserFragment() {
         // Required empty public constructor
-        signUpController=new SignUpController();
+
     }
 
 
@@ -80,9 +85,9 @@ public class PublicUserFragment extends Fragment {
                     user.setEmail(usernamestr);
                     user.setPassword(passwordstr);
                     user.setType("Public");
-                    signUpController.signUpForNormalUser(user);
+                    Log.d("Sign Up","Here");
+                   signUpController=new SignUpController(PublicUserFragment.this,user);
 
-                    //helper.insertContact(c);
                 }
             }
         });
@@ -96,4 +101,18 @@ public class PublicUserFragment extends Fragment {
     }
 
 
+    @Override
+    public void responded(Object obj) {
+        success=(boolean)obj;
+        if(success){
+        Log.d("Sign Up","In");
+        Intent myIntent = new Intent(getActivity(),Home.class);
+        getActivity().startActivity(myIntent);
+        }else{
+            Toast.makeText(getActivity(), "Email is probably wrong", Toast.LENGTH_LONG);
+        }
+
+        //helper.insertContact(c);
+        Toast.makeText(getActivity(), "Please Sign In", Toast.LENGTH_SHORT).show();
+    }
 }

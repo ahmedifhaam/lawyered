@@ -11,6 +11,9 @@ public class Notification {
     private String lbid;
     private String userId;
     private int status;
+    private String lawBrokenDesc;
+    private String lawShortDesc;
+    private String lawyerId;
 
     public Notification(){
 
@@ -63,5 +66,29 @@ public class Notification {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public String getLawBrokenDesc() {
+        return lawBrokenDesc;
+    }
+
+    public void setLawBrokenDesc(String lawBrokenDesc) {
+        this.lawBrokenDesc = lawBrokenDesc;
+    }
+
+    public String getLawShortDesc() {
+        return lawShortDesc;
+    }
+
+    public void setLawShortDesc(String lawShortDesc) {
+        this.lawShortDesc = lawShortDesc;
+    }
+
+    public String getLawyerId() {
+        return lawyerId;
+    }
+
+    public void setLawyerId(String lawyerId) {
+        this.lawyerId = lawyerId;
     }
 }

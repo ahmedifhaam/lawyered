@@ -38,9 +38,12 @@ public class ReadNotificationController {
 
                 for (DataSnapshot partyDataSnapshot : dataSnapshot.getChildren()) {
                     Log.d("NID","Snapshot");
+
                     Notification notification = partyDataSnapshot.getValue(Notification.class);
                     Log.d("NID",notification.getDescription()+"...1");
-                    nList.add(notification);
+                    if((notification.getStatus()==0)) {
+                        nList.add(notification);
+                    }
                     Log.d("TPID","Snapshot2");
                 }
 

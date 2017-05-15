@@ -2,31 +2,37 @@ package com.mit.lawyered.controller.firebase;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.mit.lawyered.R;
-import com.mit.lawyered.controller.adapter.OnResponseLaw;
-import com.mit.lawyered.controller.adapter.OnResponseThirdParties;
-import com.mit.lawyered.models.Law;
-import com.mit.lawyered.models.ThirdParties;
+import com.mit.lawyered.models.Notification;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class ControlTest extends AppCompatActivity implements OnResponseThirdParties,OnResponseLaw {
+public class ControlTest extends AppCompatActivity {
 
-    List<ThirdParties> thirdParties;
-    List<Law> laws;
-
-    ThirdParties party;
-    Law law;
-
+List<Notification> nList=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_control_test);
 
+        Notification notification=new Notification();
+        notification.setNid("-Kk7scqt427_Rpi7oAy9");
+        notification.setLbid("-Kk7scqqaZ3-wEOUO-0i");
+        notification.setStatus(0);
+        notification.setType("caseRequest");
+        notification.setDescription("rameela20 has brought up a case");
+        notification.setLawBrokenDesc("He damaged the road sign");
+        notification.setLawShortDesc("");
+        notification.setUserId("nbCCosFdd5ZusxZxf1H7dFr8k1a2");
+
+        SeeNotificationController seeNotificationController =new SeeNotificationController(notification);
+
+        //RequestController requestController=new RequestController("-Kk1E_3XbavLJwAfeMiM","He damaged the road sign");
+
         //Print thrid parties
-        Log.d("TPID","Looking for tag1");
+       // Log.d("TPID","Looking for tag1");
 
 
         //Initializing Thirdparty controller for testing
@@ -60,7 +66,10 @@ public class ControlTest extends AppCompatActivity implements OnResponseThirdPar
 
         //TagsForLawIdController tagsForLawIdController =new TagsForLawIdController(thirdParties,"-Kk1E_3XbavLJwAfeMiM","Drunken driver did");
 
+
     }
+
+
 
     //Testing for Third Party Controller
 
@@ -77,7 +86,7 @@ public class ControlTest extends AppCompatActivity implements OnResponseThirdPar
 
 
 
-    @Override
+   /* @Override
     public void respondedLaw(Object law) {
       law=(Law)law;
     }
@@ -85,5 +94,5 @@ public class ControlTest extends AppCompatActivity implements OnResponseThirdPar
     @Override
     public void respondedThird(Object tags) {
         thirdParties=(List<ThirdParties>)tags;
-    }
+    }*/
 }

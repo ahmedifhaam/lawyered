@@ -11,6 +11,8 @@ import java.util.List;
  * Created by ASUS on 5/14/2017.
  */
 
+//Create an object of Request Controller when click event of marking the law as broken happens
+
 public class RequestController implements OnResponse,OnResponseThirdParties {
     TagsForLawIdController tagsForLawIdController;
     ThirdPartyListForTagsController thirdPartyListForTagsController;

@@ -45,11 +45,15 @@ public class SaveNewCaseRequestNotification {
             notification.setUserId(party.getTpid());
             notification.setStatus(0);
             notification.setType("caseRequest");
+            notification.setLawBrokenDesc(description);
+            notification.setLawShortDesc("");
             String email=mAuth.getCurrentUser().getEmail();
             int index = email.indexOf('@');
             email = email.substring(0,index);
             notification.setDescription(email+" has brought up a case");
             String keyN=mDatabaseNotification.push().getKey();
+            notification.setNid(keyN);
+            notification.setLawyerId("");
             mDatabaseNotification.child(keyN).setValue(notification);
         }
 
